@@ -1,8 +1,6 @@
 import json
 import logging
-import os
 from pprint import pformat
-from utils import summarise_video
 import sys
 from kafka import KafkaConsumer
 from kafka.errors import KafkaError
@@ -11,7 +9,7 @@ from kafka.errors import KafkaError
 def main():
     logging.info("START")
 
-    consumer = KafkaConsumer("youtube-videos",bootstrap_servers=['localhost:9092'],value_deserializer=lambda m: json.loads(m.decode('ascii')))
+    consumer = KafkaConsumer("videos",bootstrap_servers=['localhost:9092'],value_deserializer=lambda m: json.loads(m.decode('ascii')))
 
     for message in consumer:
             logging.info("GOT %s", pformat(message.value))

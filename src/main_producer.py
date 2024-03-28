@@ -20,7 +20,7 @@ def main():
     for video_item in fetch_playlist_items(API_KEY, PLAYLIST_ID):
         for video in fetch_videos(API_KEY, video_item.get('contentDetails').get('videoId')):
             logging.info("GOT %s", pformat(summarise_video(video)))
-            producer.send(topic="youtube-videos",value=summarise_video(video))
+            producer.send(topic="videos",value=summarise_video(video))
 
 
 
